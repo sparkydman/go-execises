@@ -16,7 +16,7 @@ type problem struct{
 
 func main() {
 	csvfilename := flag.String("csv", "problems.csv", "path to csv file")
-	timeLimit := flag.Int("limit", 30, "number of seconds to spend during the quiz")
+	timeLimit := flag.Int("duration", 30, "number of seconds to spend during the quiz")
 	flag.Parse()
 
 	file, err := os.Open(*csvfilename)
