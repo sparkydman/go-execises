@@ -1,12 +1,5 @@
 # Go execises for developers
 This repository compose of small Go projects to sharpen Go developers. Each folder is a new challege.
-## Coverage
-- Basic Go programing logics
-- Goroutines
-- Channel
-- Pointer
-- Unit tests
-- And More
 ## Execise #1: Quiz Game
 Develop a timer base quiz where the user answers questions util their time is up. The program should automatically exit the quiz and output the user result.
 
@@ -26,9 +19,32 @@ Develop a timer base quiz where the user answers questions util their time is up
 ```
 ### Usage
 ```shell
+cd quize
+
 go run main.go
 
 or 
 
 go run main.go -csv="problems.csv" -duration=30
+```
+## Execise #2: URL-Shortner
+Create a url-shortener that should map path to actual URL. The app should be able to lookup the url on a map and a yaml file and redirect to the url if there's match else stick to the default package. 
+## Sample
+```go
+    mapPathUrl := map[string]string{
+        "/gg": "https://google.com",
+        "/tb":  "https://www.youtube.com",
+    }
+```
+```yaml
+- path: /yaml-doc
+  url: https://pkg.go.dev/gopkg.in/yaml.v3
+- path: /go-play
+  url: https://pkg.go.dev
+```
+### Usage
+```
+cd url-shortener
+
+go run main.go
 ```
