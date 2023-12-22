@@ -7,7 +7,7 @@ This repository compose of small Go projects to sharpen Go developers. Each fold
 - Pointer
 - Unit tests
 - And More
-## Execise one: Quiz Game
+## Execise #1: Quiz Game
 Develop a timer base quiz where the user answers questions util their time is up. The program should automatically exit the quiz and output the user result.
 
 *Question and corresponding answer should be read from CSV file defaulted to `problems.csv` at onces before the quiz start. The default quiz duration should be `30 seconds` and user should able to pass the CSV file path and duration.*

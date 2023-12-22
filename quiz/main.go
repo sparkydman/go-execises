@@ -4,6 +4,7 @@ import (
 	"encoding/csv"
 	"flag"
 	"fmt"
+	"io"
 	"os"
 	"strings"
 	"time"
@@ -23,13 +24,9 @@ func main() {
 	if err != nil{
 		exit(err)
 	}
-	r := csv.NewReader(file)
-	lines, err := r.ReadAll()
-	if err != nil{
-		exit(fmt.Errorf("failed to read cvs contents: %v", err))
-	}
-	problems := parselines(lines)
 	
+	problems := readFile(file)
+
 	timer := time.NewTimer(time.Duration(*timeLimit) * time.Second)
 
 	correntAnswer := 0
@@ -37,11 +34,7 @@ func main() {
 	for i, p := range problems{
 		fmt.Printf("Problem %d: %s = ", i+1, p.qustion)
 		ansCh := make(chan string)
-		go func(){
-			var answer string
-			fmt.Scanf("%s\n", &answer)
-			ansCh <- answer
-		}()
+		go getAnswer(ansCh)
 
 		select {
 		case <-timer.C:
@@ -55,6 +48,21 @@ func main() {
 	}
 
 	fmt.Printf("Result %d out of %d", correntAnswer, len(problems))
+}
+
+func getAnswer(ansCh chan string){
+	var answer string
+	fmt.Scanf("%s\n", &answer)
+	ansCh <- answer
+}
+
+func readFile(rd io.Reader)[]problem{
+	r := csv.NewReader(rd)
+	lines, err := r.ReadAll()
+	if err != nil{
+		exit(fmt.Errorf("failed to read cvs contents: %v", err))
+	}
+	return parselines(lines)
 }
 
 func parselines(lines [][]string) []problem{
