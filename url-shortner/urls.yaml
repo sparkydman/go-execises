@@ -1,0 +1,4 @@
+- path: /yaml-doc
+  url: https://pkg.go.dev/gopkg.in/yaml.v3
+- path: /go-play
+  url: https://pkg.go.dev
